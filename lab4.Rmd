@@ -7,7 +7,6 @@ Run this code to start!
 ```{r}
 artists <- read.csv("moma_artists.csv", as.is=TRUE)
 art <- read.csv("artworks.csv", as.is=TRUE)
-
 ```
 
 # Continuous vs Categorical Data
@@ -54,13 +53,12 @@ artists$numPieces <- ifelse(is.na(artists$numPieces), 0, artists$numPieces)
 
 7. Use `tapply` to sum the number of pieces by artist nationality. Hint: `artists` now has all the information you need.
 ```{r}
-tapply(artists$numPieces, artists$Nationality, sum)
+
 ```
 
 # Scatter Plots
 8.. Make a scatter plot charting number of pieces by artist birth year.
 ```{r}
-plot(artists$Birth.Year, artists$numPieces)
 ```
 
 9.. Re-make the same plot but remove the extremely high and extremely low `numPieces` artists. Hint: Use quantiles to do this-- select whatever cutoffs you deem appropriate.
@@ -71,28 +69,22 @@ plot(artists$Birth.Year, artists$numPieces)
 10. Make a scatter plot of width and height for artworks classified as Paintings.
 ```{r}
 #First, select all the paintings:
-paintings <- art[art$Classification == "Painting",]
 
 #Then remove all those missing either width or height. Hint: use "!is.na()" to check if something isn't NA
-paintings <- paintings[!is.na(paintings$Width..cm.) & !is.na(paintings$Height..cm.),]
 
 #Then, draw the plot:
-plot(paintings$Width..cm., paintings$Height..cm.)
 
 ```
 
 11. Re-make the same plot without the very large items. 
 ```{r}
-wCutOff <- quantile(paintings$Width..cm., prob=.99)
-hCutOff <- quantile(paintings$Height..cm., prob=.99)
 
-plot(paintings[paintings$Width..cm. < wCutOff, "Width..cm."], paintings[paintings$Height..cm. < hCutOff, "Height..cm."])
 ```
 
 12. Use `lm()` to find a best-fit line.
 
 ```{r}
-lm(paintings$Width..cm. ~ paintings$Height..cm.)
+
 ```
 13. What relationship is this best-fit line describing?
 
